@@ -35,8 +35,13 @@ private String Chromosome_map_location;
     }
 //19q13.43
     public int compareTo(Gene g){
+        String[] zelf_chromosoom = this.Chromosome_map_location.split(String.valueOf('p'|'q'));
+        String[] ander_chromosoom = g.Chromosome_map_location.split(String.valueOf('p'|'q'));
 
-        if (this.Chromosome_map_location.charAt(1) > g.Chromosome_map_location) {
+
+
+        if (zelf_chromosoom > ander_chromosoom) {
+            if()
             return +1;
         } else if (this.Chromosome_map_location.equals(g.Chromosome_map_location)) {
             return 0;
