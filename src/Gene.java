@@ -42,26 +42,28 @@ static private int amount;
 
     public int compareTo(Gene g){
        try{
-        String[] zelf_chromosoom = this.Chromosome_map_location.split("p|q");
-        String[] ander_chromosoom = g.Chromosome_map_location.split("p|q");
-           System.out.println(Arrays.toString(zelf_chromosoom));
-        if (this.Chromosome_map_location.equals(g.Chromosome_map_location)) {
+        String[] zelf_chromosoom = this.getChromosome_map_location().split("p|q");
+        String[] ander_chromosoom = g.getChromosome_map_location().split("p|q");
+
+        if (this.getChromosome_map_location().equals(g.getChromosome_map_location())) {
             return 0; }
-        if (zelf_chromosoom[0].equals("-")||ander_chromosoom[0].equals("-")){
-            return 0;
-        }
+        else if (zelf_chromosoom[0].equals("-")||ander_chromosoom[0].equals("-")){
+            return 0; }
+        else if(ander_chromosoom[0].equals("X")&& zelf_chromosoom[0].equals("Y")){
+            return -1; }
+        else if(ander_chromosoom[0].equals("Y")&& zelf_chromosoom[0].equals("X")){
+            return +1; }
         else if (zelf_chromosoom[0].equals("X") || zelf_chromosoom[0].equals("Y")){
-            return -1;
-        }
+            return -1; }
         else if (ander_chromosoom[0].equals("X") || ander_chromosoom[0].equals("Y")){
+            return +1; }
+
+        else if (Integer.parseInt(zelf_chromosoom[0]) > Integer.parseInt(ander_chromosoom[0])) {
             return +1;
         }
-        else if (Integer.parseInt(zelf_chromosoom[0]) > Integer.parseInt(ander_chromosoom[0])) {
-            return -1;
-        } else if (this.Chromosome_map_location.equals(g.Chromosome_map_location)) {
-            return 0;
-
-        } else return +1; }
+        else{return -1;
+        }
+       }
          catch(NumberFormatException numberformatexception) {
            JOptionPane.showMessageDialog(null,numberformatexception.getMessage());
             return 0; } }}
